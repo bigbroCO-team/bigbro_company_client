@@ -1,0 +1,17 @@
+{
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "trailingComma": "es5",
+  "printWidth": 80,
+  "importOrder": [
+    "^@/(.*)$",
+    "^@testing-library/react",
+    "^@storybook/(.*)$",
+    "react",
+    "react-hook-form",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
