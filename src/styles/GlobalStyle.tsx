@@ -31,16 +31,21 @@ export function GlobalStyle() {
         }
 
         body {
-          background: '#ffffff';
+          background: #1a1918;
           height: 100vh;
           height: 100dvh;
           overscroll-behavior-y: none;
           overflow-y: hidden;
           width: 600px;
           margin: 0 auto;
+          position: relative;
+          border-right: 1px solid #a3a3a3;
+          border-left: 1px solid #a3a3a3;
+          box-sizing: content-box;
 
           @media (max-width: 600px) {
             width: 100%;
+            border: 0;
           }
         }
 
