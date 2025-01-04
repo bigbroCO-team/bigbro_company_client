@@ -1,3 +1,5 @@
+'use client';
+
 import { CartIcon, HamburgerIcon, LeftArrowIcon, PeopleIcon } from '@/assets';
 
 import { useState } from 'react';
@@ -48,13 +50,15 @@ const Header = ({ text, backUrl }: HeaderProps) => {
           <S.MenuContainer onClick={(e) => e.stopPropagation()}>
             <S.TopBox>
               {BRAND_LIST.map(({ name, url }) => (
-                <S.BrandButton href={url}>{name}</S.BrandButton>
+                <S.BrandButton key={name} href={url}>
+                  {name}
+                </S.BrandButton>
               ))}
             </S.TopBox>
             <S.Br />
             <S.BottomBox>
               {NAVIGATION_LIST.map(({ name, url, icon }) => (
-                <S.NavigationButton href={url}>
+                <S.NavigationButton key={name} href={url}>
                   {icon} {name}
                 </S.NavigationButton>
               ))}
