@@ -7,7 +7,7 @@ import { Header } from '@/components';
 
 import * as S from './style';
 
-const ImageSrc = '/login/main.png';
+const IMAGE_SRC = '/login/main.png';
 
 const LoginPage = () => {
   return (
@@ -15,7 +15,7 @@ const LoginPage = () => {
       <Header text='BIGBRO' />
       <S.Container>
         <S.ImageWrapper>
-          <Image src={ImageSrc} alt='메인 이미지' fill quality={100} />
+          <Image src={IMAGE_SRC} alt='메인 이미지' fill quality={100} />
         </S.ImageWrapper>
 
         <S.LoginButton href={`${process.env.NEXT_PUBLIC_KAKAO_LOGIN_URL}`}>
