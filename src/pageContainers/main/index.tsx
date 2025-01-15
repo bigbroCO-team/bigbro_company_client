@@ -21,38 +21,36 @@ const NAV_LIST = [
 
 const MainPage = () => {
   return (
-    <>
-      <S.Container>
-        <Header text='BIGBRO' />
-        <S.Section1>
-          <S.BackgroundImageWrapper>
-            <Image src={BACKGROUND_SRC} alt='배경 이미지' fill />
-          </S.BackgroundImageWrapper>
-          <S.LogoImageWrapper>
-            <Image src={LOGO_SRC} alt='로고 이미지' fill />
-          </S.LogoImageWrapper>
-        </S.Section1>
-        <S.Section2>
-          <S.Section2ImageWrapper>
-            <Image src={SECTION2_SRC} alt='section2 이미지' fill />
-          </S.Section2ImageWrapper>
-        </S.Section2>
-        <S.Br></S.Br>
-        <S.Section3>
-          <S.Section3ImageWrapper>
-            <Image src={SECTION3_SRC} alt='section3 이미지' fill />
-          </S.Section3ImageWrapper>
-        </S.Section3>
-        <S.BottomNav>
-          {NAV_LIST.map(({ name, url, src }) => (
-            <S.NavItem key={name} href={url}>
-              <S.ShadowBox>{name}</S.ShadowBox>
-              <Image src={src} alt={`${name} 이미지`} fill />
-            </S.NavItem>
-          ))}
-        </S.BottomNav>
-      </S.Container>
-    </>
+    <S.Container>
+      <Header text='BIGBRO' />
+      <S.Section1>
+        <S.BackgroundImageWrapper>
+          <Image src={BACKGROUND_SRC} alt='배경 이미지' fill />
+        </S.BackgroundImageWrapper>
+        <S.LogoImageWrapper>
+          <Image src={LOGO_SRC} alt='로고 이미지' fill />
+        </S.LogoImageWrapper>
+      </S.Section1>
+      <S.Section2>
+        <S.Section2ImageWrapper>
+          <Image src={SECTION2_SRC} alt='section2 이미지' fill />
+        </S.Section2ImageWrapper>
+      </S.Section2>
+      <S.Br></S.Br>
+      <S.Section3>
+        <S.Section3ImageWrapper>
+          <Image src={SECTION3_SRC} alt='section3 이미지' fill />
+        </S.Section3ImageWrapper>
+      </S.Section3>
+      <S.BottomNav>
+        {NAV_LIST.map(({ name, url, src }) => (
+          <S.NavItem key={name} href={url}>
+            <S.ShadowBox>{name}</S.ShadowBox>
+            <Image src={src} alt={`${name} 이미지`} fill />
+          </S.NavItem>
+        ))}
+      </S.BottomNav>
+    </S.Container>
   );
 };
 
