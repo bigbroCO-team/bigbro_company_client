@@ -96,7 +96,7 @@ const BrandPage = ({ brand }: BrandPageProps) => {
       <Header text={brand} backUrl='/' />
       <S.Container>
         {mockData.map(({ id, images, name, discount, price }) => (
-          <S.ProductCard href={`/${id}`} key={id}>
+          <S.ProductCard href={`/product/${id}`} key={id}>
             <S.ImageWrapper>
               <Image src={images[0]} alt={`${name} 이미지`} fill />
             </S.ImageWrapper>

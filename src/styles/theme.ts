@@ -5,7 +5,9 @@ const color = {
   white: '#FFFFFF',
   gray1: '#D1D1D1',
   gray3: '#757575',
+  gray100: '#E8E8E8',
   error: '#DF454A',
+  main: '#FF952B',
 } as const;
 
 const theme = {
