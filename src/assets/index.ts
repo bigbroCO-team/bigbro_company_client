@@ -6,3 +6,4 @@ export { default as PeopleIcon } from './PeopleIcon';
 export { default as XIcon } from './XIcon';
 export { default as PlusIcon } from './PlusIcon';
 export { default as MinusIcon } from './MinusIcon';
+export { default as CheckCircleIcon } from './CheckCircleIcon';
