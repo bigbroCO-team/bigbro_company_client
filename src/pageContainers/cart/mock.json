@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "빅브로 스마트폰 케이스",
+    "option": "Red",
+    "price": 25000,
+    "imageUrl": "https://example.com/image1.jpg",
+    "status": "ON",
+    "created": "2025-03-01",
+    "count": 2
+  },
+  {
+    "id": 2,
+    "name": "빅브로 스마트폰 케이스",
+    "option": "Blue",
+    "price": 25000,
+    "imageUrl": "https://example.com/image1.jpg",
+    "status": "ON",
+    "created": "2025-03-01",
+    "count": 1
+  },
+  {
+    "id": 3,
+    "name": "SCB 프리미엄 티셔츠",
+    "option": "L",
+    "price": 35000,
+    "imageUrl": "https://example.com/image2.jpg",
+    "status": "ON",
+    "created": "2025-02-15",
+    "count": 1
+  },
+  {
+    "id": 4,
+    "name": "SCB 프리미엄 티셔츠",
+    "option": "XL",
+    "price": 35000,
+    "imageUrl": "https://example.com/image2.jpg",
+    "status": "ON",
+    "created": "2025-02-15",
+    "count": 2
+  },
+  {
+    "id": 5,
+    "name": "스컬피 스포츠 신발",
+    "option": "Black",
+    "price": 89000,
+    "imageUrl": "https://example.com/image3.jpg",
+    "status": "ON",
+    "created": "2025-01-10",
+    "count": 1
+  },
+  {
+    "id": 6,
+    "name": "공뉴기 보온 텀블러",
+    "option": "1L",
+    "price": 29000,
+    "imageUrl": "https://example.com/image4.jpg",
+    "status": "ON",
+    "created": "2025-03-05",
+    "count": 3
+  }
+]

@@ -36,6 +36,7 @@ interface SelectedOptionType {
   count: number;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ProductDetailPage = ({ id }: ProductDetailPageProps) => {
   const [mainImage, setMainImage] = useState<string>(mockData.images[0]);
   const [selectedOption, setSelectedOption] = useState<SelectedOptionType[]>(

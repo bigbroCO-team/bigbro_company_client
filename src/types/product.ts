@@ -12,3 +12,14 @@ export interface ProductType {
   status: 'on' | 'off' | 'empty';
   created: string;
 }
+
+export interface CartItemType {
+  id: number;
+  name: string;
+  option: string;
+  price: number;
+  imageUrl: string;
+  status: 'ON' | 'OFF' | 'EMPTY';
+  created: string;
+  count: number;
+}
