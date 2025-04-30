@@ -39,7 +39,7 @@ jobs:
             docker pull ${{secrets.DOCKER_USERNAME}}/bigbro_client:latest
             docker run -d \
               --name bigbro_client \
-              -p 300:3000 \
+              -p 3000:3000 \
               -e NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} \
               -e NEXT_PUBLIC_KAKAO_LOGIN_URL=${{ secrets.NEXT_PUBLIC_KAKAO_LOGIN_URL }} \
               ${{secrets.DOCKER_USERNAME}}/bigbro_client:latest
