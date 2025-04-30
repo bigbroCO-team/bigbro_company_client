@@ -1,0 +1,53 @@
+name: bigbro-ci
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # - name: Set up pnpm
+      #   run: |
+      #     corepack enable
+      #     corepack prepare pnpm@latest --activate
+
+      # - name: Install dependencies
+      #   run: pnpm install
+
+      # - name: Build Bigbro
+      #   run: pnpm build
+
+      - name: Docker build
+        run: |
+          docker build -t bigbro:latest .
+
+      - name: Success Discord Notification
+        uses: sarisia/actions-status-discord@v1.11.0
+        if: success()
+        with:
+          webhook: ${{ secrets.WEBHOOK_URL }}
+          title: '✅ BIGBRO_CLIENT CI'
+          status: ${{ job.status }}
+          content: 'PR을 확인해주세요.'
+          username: BIGBRO_CLIENT CI bot
+          url: 'https://github.com/bigbroCO-team/bigbro_company_client'
+          color: 4CAF50
+
+      - name: Failure notification to discord
+        uses: sarisia/actions-status-discord@v1.11.0
+        if: failure()
+        with:
+          webhook: ${{ secrets.WEBHOOK_URL }}
+          title: '❌ BIGBRO_CLIENT CI'
+          content: '에러를 확인해주세요.'
+          status: ${{ job.status }}
+          username: BIGBRO_CLIENT CI bot
+          url: 'https://github.com/bigbroCO-team/bigbro_company_client'
+          color: e74c3c
