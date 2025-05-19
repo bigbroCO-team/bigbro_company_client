@@ -19,8 +19,7 @@ jobs:
       - name: Docker build and push
         run: |
           docker build \
-          --build-arg NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} \
-          --build-arg NEXT_PUBLIC_KAKAO_LOGIN_URL=${{ secrets.NEXT_PUBLIC_KAKAO_LOGIN_URL }} \-t ${{secrets.DOCKER_USERNAME}}/bigbro_client:latest .
+          --build-arg NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} \-t ${{secrets.DOCKER_USERNAME}}/bigbro_client:latest .
           docker push ${{secrets.DOCKER_USERNAME}}/bigbro_client:latest
 
   deploy:
@@ -41,7 +40,6 @@ jobs:
               --name bigbro_client \
               -p 3000:3000 \
               -e NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} \
-              -e NEXT_PUBLIC_KAKAO_LOGIN_URL=${{ secrets.NEXT_PUBLIC_KAKAO_LOGIN_URL }} \
               ${{secrets.DOCKER_USERNAME}}/bigbro_client:latest
           EOF
 

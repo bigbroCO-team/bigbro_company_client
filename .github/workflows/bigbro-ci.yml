@@ -28,8 +28,7 @@ jobs:
       - name: Docker build
         run: |
           docker build \
-          --build-arg NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} \
-          --build-arg NEXT_PUBLIC_KAKAO_LOGIN_URL=${{ secrets.NEXT_PUBLIC_KAKAO_LOGIN_URL }} \-t bigbro:latest .
+          --build-arg NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} \-t bigbro:latest .
 
       - name: Success Discord Notification
         uses: sarisia/actions-status-discord@v1.11.0
