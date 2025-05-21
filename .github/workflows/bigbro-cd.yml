@@ -19,8 +19,8 @@ jobs:
       - name: Docker build and push
         run: |
           docker build \
-          --build-arg NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} \-t ${{secrets.DOCKER_USERNAME}}/bigbro_client:latest .
-          docker push ${{secrets.DOCKER_USERNAME}}/bigbro_client:latest
+          --build-arg NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} \-t ${{secrets.DOCKER_USERNAME}}/BIGBRO_COMPANY-client:latest .
+          docker push ${{secrets.DOCKER_USERNAME}}/BIGBRO_COMPANY-client:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -35,12 +35,13 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no -i "SSH_PEM_KEY.pem" ubuntu@${{secrets.EC2_IP}} << EOF
             cd /home/ubuntu/app
-            docker pull ${{secrets.DOCKER_USERNAME}}/bigbro_client:latest
+            docker pull ${{secrets.DOCKER_USERNAME}}/BIGBRO_COMPANY-client:latest
+            docker rm -f BIGBRO_COMPANY-client || true
             docker run -d \
-              --name bigbro_client \
-              -p 3000:3000 \
+              --name BIGBRO_COMPANY-client \
+              -p 80:3000 \
               -e NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} \
-              ${{secrets.DOCKER_USERNAME}}/bigbro_client:latest
+              ${{secrets.DOCKER_USERNAME}}/BIGBRO_COMPANY-client:latest
           EOF
 
       - name: Success Discord Notification

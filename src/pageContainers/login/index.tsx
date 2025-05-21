@@ -10,6 +10,8 @@ import * as S from './style';
 const IMAGE_SRC = '/login/main.png';
 
 const LoginPage = () => {
+  const KAKAO_LOGIN_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/account/auth/kakao`;
+
   return (
     <>
       <Header text='BIGBRO' />
@@ -18,7 +20,7 @@ const LoginPage = () => {
           <Image src={IMAGE_SRC} alt='메인 이미지' fill quality={100} />
         </S.ImageWrapper>
 
-        <S.LoginButton href={`${process.env.NEXT_PUBLIC_KAKAO_LOGIN_URL}`}>
+        <S.LoginButton href={KAKAO_LOGIN_URL}>
           <KakaoIcon />
           <S.LoginText>카카오 계정으로 로그인</S.LoginText>
         </S.LoginButton>
