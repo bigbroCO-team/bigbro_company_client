@@ -1,6 +1,6 @@
 'use client';
 
-import { CartIcon, HamburgerIcon, LeftArrowIcon, PeopleIcon } from '@/assets';
+import { HamburgerIcon, LeftArrowIcon, PeopleIcon } from '@/assets';
 
 import { useState } from 'react';
 
@@ -20,7 +20,7 @@ const BRAND_LIST = [
 ] as const;
 
 const NAVIGATION_LIST = [
-  { name: '장바구니', url: '/cart', icon: <CartIcon /> },
+  // { name: '장바구니', url: '/cart', icon: <CartIcon /> },
   { name: '마이페이지', url: '/my', icon: <PeopleIcon /> },
 ];
 
