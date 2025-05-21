@@ -39,7 +39,7 @@ jobs:
             docker rm -f bigbro_company-client || true
             docker run -d \
               --name bigbro_company-client \
-              -p 80:3000 \
+              -p 3000:3000 \
               -e NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} \
               ${{secrets.DOCKER_USERNAME}}/bigbro_company-client:latest
           EOF
