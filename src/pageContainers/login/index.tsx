@@ -10,7 +10,7 @@ import * as S from './style';
 const IMAGE_SRC = '/login/main.png';
 
 const LoginPage = () => {
-  const KAKAO_LOGIN_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/kakao`;
+  const KAKAO_LOGIN_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/account/auth/kakao`;
 
   return (
     <>
