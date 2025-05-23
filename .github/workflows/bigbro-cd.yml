@@ -30,10 +30,10 @@ jobs:
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SSH_HOST_PROD }}
-          port: ${{ secrets.SSH_PORT_PROD }}
-          username: ${{ secrets.SSH_USERNAME_PROD }}
-          key: ${{ secrets.SSH_PRIVATE_KEY_PROD }}
+          host: ${{ secrets.EC2_IP }}
+          port: 22
+          username: ubuntu
+          key: ${{ secrets.SSH_PEM_KEY }}
           script: |
             set -e
             ./script/deploy.sh
