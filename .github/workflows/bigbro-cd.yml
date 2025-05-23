@@ -54,7 +54,7 @@ jobs:
 
             docker run -d \
               --name bigbro_company-client-${NEW_COLOR} \
-              -p ${NEW_PORT}:${NEW_PORT} \
+              -p ${NEW_PORT}:3000 \
               -e NEXT_PUBLIC_API_BASE_URL=${{secrets.NEXT_PUBLIC_API_BASE_URL}} \
               ${{secrets.DOCKER_USERNAME}}/bigbro_company-client:latest
 
