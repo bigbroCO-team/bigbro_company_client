@@ -38,7 +38,7 @@ jobs:
             set -e
             cd /home/ubuntu/app
 
-            docker pull DOCKER_USERNAME_PLACEHOLDER/bigbro_company-client:latest
+            docker pull ${{secrets.DOCKER_USERNAME}}/bigbro_company-client:latest
 
             if [ "$(docker ps -q -f name=bigbro_company-client-blue)" ]; then
               NEW_COLOR=green
@@ -55,8 +55,8 @@ jobs:
             docker run -d \
               --name bigbro_company-client-${NEW_COLOR} \
               -p ${NEW_PORT}:${NEW_PORT} \
-              -e NEXT_PUBLIC_API_BASE_URL=NEXT_PUBLIC_API_BASE_URL_PLACEHOLDER \
-              DOCKER_USERNAME_PLACEHOLDER/bigbro_company-client:latest
+              -e NEXT_PUBLIC_API_BASE_URL=${{secrets.NEXT_PUBLIC_API_BASE_URL}} \
+              ${{secrets.DOCKER_USERNAME}}/bigbro_company-client:latest
 
             docker stop bigbro_company-client-${OLD_COLOR} || true
             docker rm bigbro_company-client-${OLD_COLOR} || true
