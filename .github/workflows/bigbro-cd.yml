@@ -19,8 +19,9 @@ jobs:
       - name: Docker build and push
         run: |
           docker build \
-          --build-arg NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} \-t ${{secrets.DOCKER_USERNAME}}/bigbro_company-client:latest .
-          docker push ${{secrets.DOCKER_USERNAME}}/bigbro_company-client:latest
+            --build-arg NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} \
+            -t ${{ secrets.DOCKER_USERNAME }}/bigbro_company-client:latest .
+          docker push ${{ secrets.DOCKER_USERNAME }}/bigbro_company-client:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -33,16 +34,36 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no -i "SSH_PEM_KEY.pem" ubuntu@${{secrets.EC2_IP}} << EOF
+          ssh -o StrictHostKeyChecking=no -i "SSH_PEM_KEY.pem" ubuntu@${{ secrets.EC2_IP }} << 'EOF'
             cd /home/ubuntu/app
-            docker pull ${{secrets.DOCKER_USERNAME}}/bigbro_company-client:latest
-            docker rm -f bigbro_company-client || true
+            docker pull ${{ secrets.DOCKER_USERNAME }}/bigbro_company-client:latest
+
+            RUNNING=$(docker ps --format '{{.Names}}' | grep bigbro_company-client-blue || true)
+            if [ -n "$RUNNING" ]; then
+              NEW_COLOR=green
+              OLD_COLOR=blue
+              NEW_PORT=3001
+              OLD_PORT=3000
+            else
+              NEW_COLOR=blue
+              OLD_COLOR=green
+              NEW_PORT=3000
+              OLD_PORT=3001
+            fi
+
             docker run -d \
-              --name bigbro_company-client \
-              -p 80:3000 \
+              --name bigbro_company-client-${NEW_COLOR} \
+              -p ${NEW_PORT}:${NEW_PORT} \
               -e NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} \
-              ${{secrets.DOCKER_USERNAME}}/bigbro_company-client:latest
+              ${{ secrets.DOCKER_USERNAME }}/bigbro_company-client:latest
+
+            docker stop bigbro_company-client-${OLD_COLOR} || true
+            docker rm bigbro_company-client-${OLD_COLOR} || true
           EOF
+
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f SSH_PEM_KEY.pem
 
       - name: Success Discord Notification
         uses: sarisia/actions-status-discord@v1.11.0
