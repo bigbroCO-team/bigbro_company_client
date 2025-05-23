@@ -27,43 +27,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Create SSH key
-        run: |
-          echo "${{ secrets.SSH_PEM_KEY }}" > SSH_PEM_KEY.pem
-          chmod 600 SSH_PEM_KEY.pem
-
       - name: Deploy to EC2
-        run: |
-          ssh -o StrictHostKeyChecking=no -i "SSH_PEM_KEY.pem" ubuntu@${{ secrets.EC2_IP }} << 'EOF'
-            cd /home/ubuntu/app
-            docker pull ${{ secrets.DOCKER_USERNAME }}/bigbro_company-client:latest
-
-            RUNNING=$(docker ps --format '{{.Names}}' | grep bigbro_company-client-blue || true)
-            if [ -n "$RUNNING" ]; then
-              NEW_COLOR=green
-              OLD_COLOR=blue
-              NEW_PORT=3001
-              OLD_PORT=3000
-            else
-              NEW_COLOR=blue
-              OLD_COLOR=green
-              NEW_PORT=3000
-              OLD_PORT=3001
-            fi
-
-            docker run -d \
-              --name bigbro_company-client-${NEW_COLOR} \
-              -p ${NEW_PORT}:${NEW_PORT} \
-              -e NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} \
-              ${{ secrets.DOCKER_USERNAME }}/bigbro_company-client:latest
-
-            docker stop bigbro_company-client-${OLD_COLOR} || true
-            docker rm bigbro_company-client-${OLD_COLOR} || true
-          EOF
-
-      - name: Cleanup SSH key
-        if: always()
-        run: rm -f SSH_PEM_KEY.pem
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST_PROD }}
+          port: ${{ secrets.SSH_PORT_PROD }}
+          username: ${{ secrets.SSH_USERNAME_PROD }}
+          key: ${{ secrets.SSH_PRIVATE_KEY_PROD }}
+          script: |
+            set -e
+            ./script/deploy.sh
 
       - name: Success Discord Notification
         uses: sarisia/actions-status-discord@v1.11.0
