@@ -4,9 +4,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'example.com',
-        port: '',
-        pathname: '/**',
+        hostname: '**', // 모든 도메인 허용
+      },
+      {
+        protocol: 'http',
+        hostname: '**', // http도 허용할 경우
       },
     ],
   },

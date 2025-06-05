@@ -213,7 +213,8 @@ export const ButtonBox = styled.div`
 `;
 
 export const BuyButton = styled.button`
-  width: 16.5rem;
+  /* width: 16.5rem; */
+  width: 100%;
   height: 3.5rem;
   color: ${({ theme }) => theme.color.dark};
   background-color: ${({ theme }) => theme.color.main};
