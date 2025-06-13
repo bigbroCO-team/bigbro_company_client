@@ -13,3 +13,11 @@ export const productQueryKeys = {
   getProductById: (id: number) => ['product', 'get', id],
   getProductByBrand: (brand: BrandType) => ['product', 'brand', brand],
 };
+
+export const accountQueryKeys = {
+  getMyInfo: () => ['account', 'myInfo', 'get'],
+};
+
+export const orderQueryKeys = {
+  getMyOrder: () => ['order', 'my', 'list'],
+};

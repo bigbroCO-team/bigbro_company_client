@@ -1,6 +1,7 @@
 'use client';
 
 import { HamburgerIcon, LeftArrowIcon, PeopleIcon } from '@/assets';
+import useGetMyInfo from '@/hooks/apis/account/useGetMyInfo';
 
 import { useState } from 'react';
 
@@ -11,21 +12,26 @@ interface HeaderProps {
   backUrl?: string;
 }
 
-const BRAND_LIST = [
-  { name: 'CBWAS', url: '/CBWAS' },
-  { name: 'S.C.B', url: '/S.C.B' },
-  { name: 'BIGBRO', url: '/BIGBRO' },
-  { name: 'GONGNEWGI', url: '/GONGNEWGI' },
-  { name: 'SCULFEE', url: '/SCULFEE' },
-] as const;
-
-const NAVIGATION_LIST = [
-  // { name: '장바구니', url: '/cart', icon: <CartIcon /> },
-  { name: '마이페이지', url: '/my', icon: <PeopleIcon /> },
-];
-
 const Header = ({ text, backUrl }: HeaderProps) => {
   const [isMenu, setIsMenu] = useState<boolean>(false);
+  const { data } = useGetMyInfo();
+
+  const BRAND_LIST = [
+    { name: 'CBWAS', url: '/CBWAS' },
+    { name: 'S.C.B', url: '/S.C.B' },
+    { name: 'BIGBRO', url: '/BIGBRO' },
+    { name: 'GONGNEWGI', url: '/GONGNEWGI' },
+    { name: 'SCULFEE', url: '/SCULFEE' },
+  ] as const;
+
+  const NAVIGATION_LIST = [
+    // { name: '장바구니', url: '/cart', icon: <CartIcon /> },
+    {
+      name: data?.id ? '마이페이지' : '로그인',
+      url: data?.id ? '/my' : '/login',
+      icon: <PeopleIcon />,
+    },
+  ];
 
   return (
     <>

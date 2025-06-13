@@ -14,3 +14,11 @@ export const productUrls = {
   getProductById: (id: number) => `/product/${id}`,
   getProductByBrand: (brand: BrandType) => `/product?brand=${brand}`,
 };
+
+export const accountUrls = {
+  getMyInfo: () => '/account/my',
+};
+
+export const orderUrls = {
+  getMyOrder: () => '/order',
+};
