@@ -8,7 +8,7 @@ import { Header } from '@/components';
 import useGetMyInfo from '@/hooks/apis/account/useGetMyInfo';
 import usePostStagingOrder from '@/hooks/apis/order/usePostStagingOrder';
 import useGetProductById from '@/hooks/apis/product/useGetProductById';
-import { ProductType } from '@/types';
+import { PostStagingOrderType, ProductType } from '@/types';
 import { formatKRW } from '@/utils';
 
 import { ChangeEvent, useState } from 'react';
@@ -80,7 +80,7 @@ const ProductDetailPage = ({ id, initialData }: ProductDetailPageProps) => {
       return push('/login');
     }
 
-    const body = {
+    const body: PostStagingOrderType = {
       products: selectedOption.map(({ name, count }) => ({
         product: id,
         option: name,

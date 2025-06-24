@@ -64,3 +64,11 @@ export interface PatchStagingOrderType {
   address: number;
   request: string;
 }
+
+export interface PostStagingOrderType {
+  products: {
+    product: number;
+    option: string;
+    quantity: number;
+  }[];
+}

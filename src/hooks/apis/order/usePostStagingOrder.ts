@@ -1,13 +1,13 @@
 import { AxiosError } from 'axios';
 
 import { orderQueryKeys, orderUrls, post } from '@/libs';
-import { PatchStagingOrderType } from '@/types';
+import { PostStagingOrderType } from '@/types';
 
 import { UseMutationOptions, useMutation } from '@tanstack/react-query';
 
 const usePostStagingOrder = (
   options?: Omit<
-    UseMutationOptions<unknown, AxiosError, PatchStagingOrderType, unknown>,
+    UseMutationOptions<unknown, AxiosError, PostStagingOrderType, unknown>,
     'mutationKey' | 'mutationFn'
   >
 ) =>

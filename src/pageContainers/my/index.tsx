@@ -9,7 +9,7 @@ import { formatKRW } from '@/utils';
 import * as S from './style';
 
 interface OrderHistoryCardProps {
-  id: number;
+  id: string;
   delivery_status: string;
   name: string;
   option: string;
@@ -30,14 +30,13 @@ const MyPage = () => {
           <S.Email>{myInfo?.email} 님</S.Email>
         </S.MyInfoBox>
         <S.OrderHistoryBox>
-          {myOrderHistoryList?.map(({ id: orderId, items }) =>
+          {myOrderHistoryList?.map(({ id: orderId, items, status }) =>
             items.map(
               (
                 {
                   id,
                   product: { name, images },
-                  product_option: { name: option },
-                  status,
+                  product_option,
                   price,
                   quantity,
                 },
@@ -47,7 +46,7 @@ const MyPage = () => {
                   <OrderHistoryCard
                     id={orderId}
                     name={name}
-                    option={option}
+                    option={product_option}
                     delivery_status={status}
                     price={price}
                     quantity={quantity}
