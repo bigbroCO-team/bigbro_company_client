@@ -9,6 +9,12 @@ export const Container = styled.div`
   height: 100%;
   overflow-y: scroll;
   position: relative;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const BackgroundImageWrapper = styled.div`
