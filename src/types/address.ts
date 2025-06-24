@@ -6,6 +6,5 @@ export type AddressType = {
   phone: string;
   address: string;
   detail: string;
-  request?: string;
   default: boolean;
 };

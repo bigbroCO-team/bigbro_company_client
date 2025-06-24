@@ -27,7 +27,7 @@ export default function PurchaseConfirmation() {
           <Check size={70} color='#1a1918' strokeWidth={3} />
         </S.CheckCircle>
         <S.SuccessMessage>구매가 완료되었습니다!</S.SuccessMessage>
-        <S.ActionButton>주문내역 확인하기</S.ActionButton>
+        <S.ActionButton href='/my'>주문내역 확인하기</S.ActionButton>
       </S.MainContent>
     </S.Container>
   );

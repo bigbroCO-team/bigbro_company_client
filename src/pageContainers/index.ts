@@ -7,3 +7,4 @@ export { default as SuccessPage } from './success';
 export { default as AddressPage } from './address';
 export { default as AddressWritePage } from './addressWrite';
 export { default as MyPage } from './my';
+export { default as OrderFormPage } from './orderForm';

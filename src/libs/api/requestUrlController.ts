@@ -21,4 +21,7 @@ export const accountUrls = {
 
 export const orderUrls = {
   getMyOrder: () => '/order',
+  postStagingOrder: () => '/order',
+  getStagingOrder: () => '/order/staging',
+  patchStagingOrder: (id: string) => `/order/${id}`,
 };

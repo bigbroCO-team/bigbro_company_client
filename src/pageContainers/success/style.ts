@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Link from 'next/link';
 
 export const Container = styled.div`
   display: flex;
@@ -58,7 +59,7 @@ export const SuccessMessage = styled.h2`
   line-height: 40px;
 `;
 
-export const ActionButton = styled.button`
+export const ActionButton = styled(Link)`
   width: 375px;
   padding: 16px 0;
   background-color: #ff952b;
@@ -67,4 +68,6 @@ export const ActionButton = styled.button`
   font-weight: 500;
   font-size: 18px;
   cursor: pointer;
+  text-decoration: none;
+  color: ${({ theme }) => theme.color.dark};
 `;

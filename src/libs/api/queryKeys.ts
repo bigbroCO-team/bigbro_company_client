@@ -20,4 +20,7 @@ export const accountQueryKeys = {
 
 export const orderQueryKeys = {
   getMyOrder: () => ['order', 'my', 'list'],
+  postStagingOrder: () => ['order', 'staging', 'post'],
+  getStagingOrder: () => ['order', 'staging', 'get'],
+  patchStagingOrder: () => ['order', 'staging', 'patch'],
 };

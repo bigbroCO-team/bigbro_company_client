@@ -33,7 +33,6 @@ const AddressWritePage = ({ id, address }: AddressWritePageProps) => {
         address: address?.address ?? undefined,
         zipcode: address?.zipcode ?? undefined,
         detail: address?.detail ?? undefined,
-        request: address?.request ?? undefined,
       },
     });
   const isFormFilled = addressSchema.safeParse(watch()).success;
@@ -127,14 +126,6 @@ const AddressWritePage = ({ id, address }: AddressWritePageProps) => {
           <S.Input
             placeholder='숫자만 입력해주세요' //
             {...register('phone')}
-          />
-        </S.InputWrapper>
-
-        <S.InputWrapper>
-          배송 요청사항 (선택)
-          <S.Input
-            placeholder='Ex. 문 앞에 놓아주세요'
-            {...register('request')}
           />
         </S.InputWrapper>
 

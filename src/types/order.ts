@@ -1,8 +1,19 @@
 import { ProductType } from './product';
 
 export type OrderType = {
-  id: number;
+  id: string;
   items: ItemType[];
+  total_price: number;
+  delivery_cost: number;
+  product_total_price: number;
+  tracking_number: string;
+  delivery_company: string;
+  address: string;
+  address_detail: string;
+  zipcode: string;
+  request: string;
+  phone: string;
+  status: OrderStatus;
 };
 
 export interface ItemType {
@@ -10,21 +21,13 @@ export interface ItemType {
   product: ProductType;
   quantity: number;
   total_price: number;
-  product_option: ProductOptionType;
+  product_option: string;
   created_at: string;
   updated_at: string;
-  status: OrderItemStatus;
   price: number;
 }
 
-export interface ProductOptionType {
-  id: number;
-  name: string;
-}
-
-// 구매 완료 | 상품 준비중 | 배송 시작 | 배송중 | 배송 완료 | 구매 확정
-
-export type OrderItemStatus =
+export type OrderStatus =
   | 'STAGING'
   | 'PURCHASED'
   | 'PREPARE_SHIP'
@@ -32,3 +35,32 @@ export type OrderItemStatus =
   | 'IN_SHIP'
   | 'DELIVERED'
   | 'COMPLETED';
+
+export interface PostStagingOrderType {
+  products: {
+    product: number;
+    option: string;
+    quantity: number;
+  }[];
+}
+
+export interface StagingOrderType {
+  id: string;
+  items: ItemType[];
+  total_price: number;
+  delivery_cost: number;
+  product_total_price: number;
+  tracking_number?: string;
+  delivery_company?: string;
+  address?: string;
+  address_detail?: string;
+  zipcode?: string;
+  request?: string;
+  phone?: string;
+}
+
+export interface PatchStagingOrderType {
+  id: string;
+  address: number;
+  request: string;
+}

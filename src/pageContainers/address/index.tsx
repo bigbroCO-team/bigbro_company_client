@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { LeftArrowIcon } from '@/assets';
@@ -17,13 +18,13 @@ import * as S from './style';
 const AddressPage = () => {
   const { data: addressList } = useGetAddress();
 
-  console.log('addressList', addressList);
-
   return (
     <S.Container>
       <S.AddressHeader>
         <S.LeftSection>
-          <LeftArrowIcon />
+          <Link href='/order/form'>
+            <LeftArrowIcon />
+          </Link>
           배송지 정보
         </S.LeftSection>
         <PlusButton />

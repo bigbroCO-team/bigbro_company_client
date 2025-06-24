@@ -49,8 +49,6 @@ const getAddressById = async (id: number) => {
       redirect('/login');
     }
 
-    console.log(response);
-
     return response.json();
   } catch {
     redirect('/address');

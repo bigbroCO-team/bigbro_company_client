@@ -1,9 +1,12 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import { MinusIcon, PlusIcon, XIcon } from '@/assets';
 import { Header } from '@/components';
+import useGetMyInfo from '@/hooks/apis/account/useGetMyInfo';
+import usePostStagingOrder from '@/hooks/apis/order/usePostStagingOrder';
 import useGetProductById from '@/hooks/apis/product/useGetProductById';
 import { ProductType } from '@/types';
 import { formatKRW } from '@/utils';
@@ -24,15 +27,18 @@ interface SelectedOptionType {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ProductDetailPage = ({ id, initialData }: ProductDetailPageProps) => {
-  console.log('initialData', initialData);
-
   const { data: product } = useGetProductById(id, { initialData: initialData });
+  const { data: myInfo } = useGetMyInfo();
   const [mainImage, setMainImage] = useState<string>(initialData.images[0]);
+  const { push } = useRouter();
 
-  console.log(mainImage);
   const [selectedOption, setSelectedOption] = useState<SelectedOptionType[]>(
     []
   );
+
+  const { mutate: postStagingOrder } = usePostStagingOrder({
+    onSuccess: () => push('/order/form'),
+  });
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
@@ -65,6 +71,24 @@ const ProductDetailPage = ({ id, initialData }: ProductDetailPageProps) => {
     );
 
     setSelectedOption(newOption);
+  };
+
+  const handleBuyButtonClick = () => {
+    if (selectedOption.length === 0) return;
+
+    if (!myInfo?.email) {
+      return push('/login');
+    }
+
+    const body = {
+      products: selectedOption.map(({ name, count }) => ({
+        product: id,
+        option: name,
+        quantity: count,
+      })),
+    };
+
+    postStagingOrder(body);
   };
 
   return (
@@ -156,7 +180,7 @@ const ProductDetailPage = ({ id, initialData }: ProductDetailPageProps) => {
           </S.TotalPriceBox>
           <S.ButtonBox>
             {/* <S.CartButton>장바구니</S.CartButton> */}
-            <S.BuyButton>구매하기</S.BuyButton>
+            <S.BuyButton onClick={handleBuyButtonClick}>구매하기</S.BuyButton>
           </S.ButtonBox>
           <S.Description>{product.description}</S.Description>
         </S.InfoBox>

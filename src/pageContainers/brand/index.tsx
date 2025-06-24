@@ -15,6 +15,8 @@ interface BrandPageProps {
 const BrandPage = ({ brand }: BrandPageProps) => {
   const { data: productList } = useGetProductByBrand(brand);
 
+  console.log(productList);
+
   return (
     <>
       <Header text={brand} backUrl='/' />
